@@ -12,6 +12,9 @@ class UpdateTaskRequest extends FormRequest
     public function authorize(): bool
     {
         return false;
+        return boolval(request()->user_id == auth()->id())
+        || auth()->user()->roles->map->names->contains("admin")->isNotEmpty()
+        ;
     }
 
     /**
@@ -22,7 +25,9 @@ class UpdateTaskRequest extends FormRequest
     public function rules(): array
     {
         return [
-            //
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
         ];
     }
 }

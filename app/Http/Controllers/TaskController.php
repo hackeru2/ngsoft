@@ -13,7 +13,10 @@ class TaskController extends Controller
      */
     public function index()
     {
-        $tasks = Task::paginate(1);
+        if(request()->query('search')) 
+            return Task::findWithSearchQuery(request()->query('search'));
+        
+        $tasks = Task::paginate(10);
 
         return response()->json(['tasks' => $tasks], 200);
     }
@@ -35,6 +38,7 @@ class TaskController extends Controller
             'title' => $request->input('title'),
             'description' => $request->input('description'),
             'due_date' => $request->input('due_date'),
+            'user_id' => auth()->id()
         ]);
 
         return response()->json(['task' => $task], 201);
@@ -59,7 +63,7 @@ class TaskController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(StoreTaskRequest $request, Task $task)
+    public function update(UpdateTaskRequest $request, Task $task)
     {
 
         try {
@@ -80,6 +84,11 @@ class TaskController extends Controller
      */
     public function destroy(Task $task)
     {
-        //
+
+        if(!auth()->user()->roles->map->name->contains("admin")) return; //throw a message
+
+
+        $task->delete();
+        return $task;
     }
 }

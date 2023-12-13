@@ -11,7 +11,10 @@ class StoreTaskRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return true;
+
+        $user = auth()->user();
+        return ($user->roles->pluck('name')->intersect(["admin", "write_delete"])->isNotEmpty());
+
     }
 
     /**

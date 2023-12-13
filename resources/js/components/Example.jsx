@@ -1,28 +1,20 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import ReactDOM from "react-dom/client";
 import Tasks from "./Tasks";
 import Pagination from "./Pagination";
 import MyContextProvider from "../../../MyContextProvider";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 // Make sure to bind modal to your appElement (https://reactcommunity.org/react-modal/accessibility/)
 function Example() {
-    const [currentPage, setCurrentPage] = useState(1);
-    const [totalPages, setTotalPages] = useState(1); // Initialize with 1 page
-    const handlePageChange = (pageNumber) => {
-        setCurrentPage(pageNumber);
-        // You may want to fetch data for the new page here or update your component state.
-    };
+    const [totalPages, setTotalPages] = useState(1);
     return (
         <div className="container">
+            <ToastContainer />
             <MyContextProvider>
-                <Tasks
-                    setTotalPages={setTotalPages}
-                    currentPage={currentPage}
-                />
-                <Pagination
-                    currentPage={currentPage}
-                    totalPages={totalPages}
-                    onPageChange={handlePageChange}
-                />
+                <Tasks setTotalPages={setTotalPages} />
+                <Pagination totalPages={totalPages} />
                 {/* <div className="row justify-content-center">
                 <div className="col-md-8">
                     <div className="card">

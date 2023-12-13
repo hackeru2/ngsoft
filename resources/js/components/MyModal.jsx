@@ -7,14 +7,9 @@ const Modal = ({ onSubmit }) => {
     return (
         <div>
             {showModal ? (
-                <div className="fixed">
-                    <div className="flex justify-center items-center overflow-x-hidden overflow-y-auto fixed inset-0 z-10 outline-none focus:outline-none">
-                        <div className="relative w-auto my-6 mx-auto max-w-3xl">
-                            <TaskForm
-                                onSubmit={onSubmit}
-                                initialTask={myData}
-                            />
-                        </div>
+                <div className=" overflow-x-hidden mx-auto">
+                    <div className="relative w-auto my-6 w-100">
+                        <TaskForm onSubmit={onSubmit} initialTask={myData} />
                     </div>
                 </div>
             ) : null}

@@ -51,7 +51,6 @@ const TaskForm = ({ initialTask, onSubmit }) => {
                     ></button>
                 </div>
                 <div className="relative p-6 flex-auto">
-                    {JSON.stringify(taskData)}
                     <label className="task-label"> Title:</label>
                     <input
                         type="text"

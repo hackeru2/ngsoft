@@ -1,7 +1,11 @@
 // Pagination.js
 import React from "react";
+import { useContext } from "react";
+import MyContext from "../../../MyContext";
 
-const Pagination = ({ currentPage, totalPages, onPageChange }) => {
+const Pagination = ({ totalPages }) => {
+    const { setCurrentPage, currentPage } = useContext(MyContext);
+
     const pageNumbers = [];
 
     for (let i = 1; i <= totalPages; i++) {
@@ -18,7 +22,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                             ? "opacity-50 cursor-not-allowed"
                             : "cursor-pointer"
                     }`}
-                    onClick={() => onPageChange(currentPage - 1)}
+                    onClick={() => setCurrentPage(currentPage - 1)}
                 >
                     &lt;
                 </li>
@@ -32,7 +36,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                                 ? "bg-blue-500 text-white"
                                 : "bg-gray-200 text-gray-700"
                         } px-3 py-1 cursor-pointer rounded`}
-                        onClick={() => onPageChange(number)}
+                        onClick={() => setCurrentPage(number)}
                     >
                         {number}
                     </li>
@@ -45,7 +49,7 @@ const Pagination = ({ currentPage, totalPages, onPageChange }) => {
                             ? "opacity-50 cursor-not-allowed"
                             : "cursor-pointer"
                     }`}
-                    onClick={() => onPageChange(currentPage + 1)}
+                    onClick={() => setCurrentPage(currentPage + 1)}
                 >
                     &gt;
                 </li>
