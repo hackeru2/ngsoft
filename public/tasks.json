@@ -1,0 +1,16 @@
+// public/tasks.json
+[
+    {
+        "id": 1,
+        "title": "Task 1",
+        "description": "Description for Task 1",
+        "dueDate": "2023-12-20"
+    },
+    {
+        "id": 2,
+        "title": "Task 2",
+        "description": "Description for Task 2",
+        "dueDate": "2023-12-15"
+    }
+    // Add more tasks as needed
+]
